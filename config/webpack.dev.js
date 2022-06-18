@@ -11,6 +11,7 @@ const devConfig = {
     static: "./",
     open: true,
     hot: true,
+    historyApiFallback: true,
   },
   target: "web",
   plugins: [new HotModuleReplacementPlugin(), new ReactRefreshWebpackPlugin()],
