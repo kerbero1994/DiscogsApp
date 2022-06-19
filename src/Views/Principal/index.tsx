@@ -1,39 +1,25 @@
-import { useState } from "react";
+import { useAppSelector } from "../../hooks";
+import { useState, useEffect } from "react";
+import SearchInput from "../../components/SearchInput";
 
-function App() {
-  const [search, setSearch] = useState("");
-  const fetchData = async (search: string) => {
-    try {
-      const response = await fetch(
-        `https://api.discogs.com//database/search?q=${search}&key=${process.env.REACT_API_KEY}&secret=${process.env.REACT_API_SECRET}`
-      );
-      const data = await response.json();
-      const results = data.results;
-      console.log(data);
-    } catch (err) {
-      alert(err);
-    }
-  };
+function Home() {
+  const Call = useAppSelector((state) => state.Search.Results);
+  const [results, setResults] = useState([]);
+  useEffect(() => {
+    console.log("se usa", Call);
+    setResults(Call);
+  }, [Call]);
+
   return (
-    <div className="app">
-      <div>
-        <label htmlFor="name">Buscar</label>
-        <input
-          id="name"
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <button
-          onClick={() => {
-            fetchData(search);
-          }}
-        >
-          buscar
-        </button>
-      </div>
+    <div className="Home">
+      <SearchInput />
+      {results &&
+        results.length > 0 &&
+        results.map((element) => {
+          return <h1 key={element.id}>{element.title}</h1>;
+        })}
     </div>
   );
 }
 
-export default App;
+export default Home;

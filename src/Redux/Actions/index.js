@@ -1,12 +1,10 @@
-export const addPermissions = (SEARCH) => ({
+export const addSEARCH = (SEARCH) => ({
   type: "ADD_SEARCH",
   payload: SEARCH,
 });
-export const authorization = (index) => ({
-  type: "DELETE_SEARCH",
-  payload: index,
+export const actualSEARCH = (SEARCH) => ({
+  type: "ACTUAL_SEARCH",
+  payload: SEARCH,
 });
-export const addCompaniesList = (newSEARCH) => ({
-  type: "UPDATE_SEARCH",
-  payload: newSEARCH,
-});
+
+export default { addSEARCH, actualSEARCH };

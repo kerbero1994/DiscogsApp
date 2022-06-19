@@ -1,13 +1,20 @@
 const initSt = {
-  Searches: [],
+  Results: [],
+  ConnectionState: "HOLD",
 };
 
 const HistoryReducer = (state = initSt, action) => {
   switch (action.type) {
-    case "ADD_SEARCH": {
+    case "ACTUAL_SEARCH": {
       return {
         ...state,
-        Searches: [...state.Searches, action.payload],
+        Results: action.payload,
+      };
+    }
+    case "SEARCH_STATE": {
+      return {
+        ...state,
+        ConnectionState: action.payload,
       };
     }
     default:
