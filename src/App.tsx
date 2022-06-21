@@ -4,6 +4,8 @@ import { store, persister } from "./Redux/Store/StoreConfig";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import Details from "./Views/Details";
 import Principal from "./Views/Principal";
+import History from "./Views/History";
+import "./App.css";
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Principal />} />
             <Route path="/Details" element={<Details />} />
+            <Route path="/History" element={<History />} />
             <Route
               path="*"
               element={

@@ -1,24 +1,17 @@
 import { useAppSelector } from "../../hooks";
-import { useState, useEffect } from "react";
 import SearchInput from "../../components/SearchInput";
-
+import Layout from "../../components/Layout";
+import Pagination from "../../components/PaginationResults";
+import InfinityScroll from "../../components/InfinityScrollResults";
 function Home() {
-  const Call = useAppSelector((state) => state.Search.Results);
-  const [results, setResults] = useState([]);
-  useEffect(() => {
-    console.log("se usa", Call);
-    setResults(Call);
-  }, [Call]);
-
+  const ViewOnPagination = useAppSelector((state) => state.Settings.pagination);
   return (
-    <div className="Home">
-      <SearchInput />
-      {results &&
-        results.length > 0 &&
-        results.map((element) => {
-          return <h1 key={element.id}>{element.title}</h1>;
-        })}
-    </div>
+    <Layout>
+      <>
+        <SearchInput />
+        {ViewOnPagination ? <Pagination /> : <InfinityScroll />}
+      </>
+    </Layout>
   );
 }
 
