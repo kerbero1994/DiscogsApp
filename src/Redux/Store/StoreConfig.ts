@@ -6,7 +6,7 @@ import rootReducer from "../Reducers/RootReducer";
 const config = {
   key: "root",
   storage: storage,
-  whitelist: ["History"],
+  whitelist: ["History", "Settings", "Favorites"],
 };
 
 const combinedReducer = persistReducer(config, rootReducer);

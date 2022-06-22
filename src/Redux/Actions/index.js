@@ -6,6 +6,10 @@ export const actualSEARCH = (SEARCH) => ({
   type: "ACTUAL_SEARCH",
   payload: SEARCH,
 });
+export const replaceSEARCH = (SEARCH) => ({
+  type: "REPLACE_SEARCH",
+  payload: SEARCH,
+});
 export const connectionState = (SEARCH) => ({
   type: "SEARCH_STATE",
   payload: SEARCH,
@@ -15,5 +19,20 @@ export const changeTheme = () => ({
 });
 export const changeResultsVisualizations = () => ({
   type: "CHANGE_PAGINATION",
+});
+export const addHistory = (SEARCH) => ({
+  type: "ADD_HISTORY",
+  payload: SEARCH,
+});
+export const deleteHistory = (INDEX) => ({
+  type: "DELETE_HISTORY",
+  payload: INDEX,
+});
+export const updateHistory = (SEARCH) => ({
+  type: "UPDATE_HISTORY",
+  payload: SEARCH,
+});
+export const pruneHistory = () => ({
+  type: "PRUNE_HISTORY",
 });
 export default { addSEARCH, actualSEARCH, changeTheme };

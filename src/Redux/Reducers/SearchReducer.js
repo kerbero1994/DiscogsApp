@@ -10,7 +10,6 @@ const initSt = {
 const HistoryReducer = (state = initSt, action) => {
   switch (action.type) {
     case "ACTUAL_SEARCH": {
-      console.log(action.payload.pagination);
       return {
         ...state,
         Results: action.payload,
@@ -21,6 +20,13 @@ const HistoryReducer = (state = initSt, action) => {
             ...action.payload.results,
           ],
         },
+      };
+    }
+    case "REPLACE_SEARCH": {
+      return {
+        ...state,
+        Results: action.payload,
+        InfinityScrollResults: action.payload,
       };
     }
     case "SEARCH_STATE": {

@@ -7,6 +7,7 @@ import {
   changeTheme,
   changeResultsVisualizations,
 } from "../../Redux/Actions/index";
+import { Link } from "react-router-dom";
 
 function index() {
   const theme = useTheme();
@@ -40,6 +41,12 @@ function index() {
       >
         Pagination
       </button>
+      <Link to={"/History"}>
+        <button>History</button>
+      </Link>
+      <Link to={"/Favorites"}>
+        <button>Favorites</button>
+      </Link>
     </div>
   );
 }

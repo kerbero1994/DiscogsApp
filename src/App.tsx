@@ -5,6 +5,7 @@ import { PersistGate } from "redux-persist/lib/integration/react";
 import Details from "./Views/Details";
 import Principal from "./Views/Principal";
 import History from "./Views/History";
+import Favorites from "./Views/Favorites";
 import "./App.css";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Principal />} />
             <Route path="/Details" element={<Details />} />
             <Route path="/History" element={<History />} />
+            <Route path="/Favorites" element={<Favorites />} />
             <Route
               path="*"
               element={

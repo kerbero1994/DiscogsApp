@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { actualSEARCH, connectionState } from "../../Redux/Actions/index";
+import {
+  replaceSEARCH,
+  connectionState,
+  addHistory,
+} from "../../Redux/Actions/index";
 
 function Home() {
   const [search, setSearch] = useState("");
+  const today = new Date();
   const Dispatch = useDispatch();
   const fetchData = async (search: string) => {
     try {
@@ -12,8 +17,18 @@ function Home() {
         `https://api.discogs.com//database/search?q=${search}&key=${process.env.REACT_API_KEY}&secret=${process.env.REACT_API_SECRET}`
       );
       const data = await response.json();
+      console.log("inputSearch", search, data);
       if (data.results && data.results.length > 0) {
-        Dispatch(actualSEARCH(data));
+        Dispatch(replaceSEARCH(data));
+        if (search !== "") {
+          Dispatch(
+            addHistory({
+              time: `${today.getDate()}/${today.getMonth()}/${today.getFullYear()}`,
+              searchTerm: search,
+              result: data,
+            })
+          );
+        }
         Dispatch(connectionState("SUCCESS"));
       } else {
         Dispatch(connectionState("VOID"));
