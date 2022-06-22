@@ -1,11 +1,16 @@
-import React from "react";
 import Layout from "../../components/Layout";
 import { useAppSelector } from "../../hooks";
 import { useDispatch } from "react-redux";
-import { pruneHistory, deleteHistory } from "../../Redux/Actions/index";
+import {
+  pruneHistory,
+  deleteHistory,
+  replaceSEARCH,
+} from "../../Redux/Actions/index";
+import { useNavigate } from "react-router-dom";
 
 function index() {
   const Dispatch = useDispatch();
+  const navigate = useNavigate();
   const History = useAppSelector((state) => state.History);
   return (
     <Layout>
@@ -38,6 +43,14 @@ function index() {
                     }}
                   >
                     delete entry
+                  </button>
+                  <button
+                    onClick={() => {
+                      Dispatch(replaceSEARCH(HistoryEntry.result));
+                      navigate("/");
+                    }}
+                  >
+                    Go the search
                   </button>
                 </div>
               );

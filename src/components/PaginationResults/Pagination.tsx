@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks";
 import { useDispatch } from "react-redux";
 import { actualSEARCH, connectionState } from "../../Redux/Actions/index";
+import { createStyles } from "../../types/emotion-styles";
+import { useTheme } from "@emotion/react";
+import CardResult from "../CardsResults";
 
 function Pagination() {
   const Search = useAppSelector((state) => state.Search);
@@ -25,15 +28,33 @@ function Pagination() {
   useEffect(() => {
     window.scrollTo({ behavior: "smooth", top: 0 });
   }, [Search.Results]);
+  const theme = useTheme();
+  const styles = createStyles({
+    container: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "0",
+      backgroundColor: "#f7f8fc",
+    },
+    elements_container: {
+      display: "flex",
+      width: "100%",
+      justifyContent: "space-evenly",
+      flexWrap: "wrap",
+    },
+  });
   return (
     <>
-      {Search.Results.results &&
-        Search.Results.results.length > 0 &&
-        Search.Results.results.map(
-          (element: { id: React.Key; title: string }) => {
-            return <h1 key={element.id}>{element.title}</h1>;
-          }
-        )}
+      <div css={styles.container}>
+        <div css={styles.elements_container}>
+          {Search.Results.results &&
+            Search.Results.results.length > 0 &&
+            Search.Results.results.map((element: any) => {
+              return <CardResult {...element} key={element.id} />;
+            })}
+        </div>
+      </div>
       <ul className="pagination">
         {Search.Results?.pagination?.urls?.first && (
           <li>

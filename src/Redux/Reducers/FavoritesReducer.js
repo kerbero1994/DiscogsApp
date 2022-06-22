@@ -1,5 +1,5 @@
 const initSt = {
-  Favorites: [],
+  List: [],
 };
 
 const FavoritesReducer = (state = initSt, action) => {
@@ -7,13 +7,13 @@ const FavoritesReducer = (state = initSt, action) => {
     case "ADD_FAV": {
       return {
         ...state,
-        Searches: [...state.Searches, ...action.payload],
+        List: [...state.List, action.payload],
       };
     }
     case "DELETE_FAV": {
       return {
         ...state,
-        Searches: [...state.Searches, ...action.payload],
+        List: state.List.filter((entry) => entry.id !== action.payload),
       };
     }
     default:

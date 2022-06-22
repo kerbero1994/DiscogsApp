@@ -13,7 +13,9 @@ const HistoryReducer = (state = initSt, action) => {
     case "DELETE_HISTORY": {
       return {
         ...state,
-        Searches: [...state.Searches, ...action.payload],
+        Searches: state.Searches.filter(
+          (entry, index) => index !== action.payload
+        ),
       };
     }
     case "UPDATE_HISTORY": {

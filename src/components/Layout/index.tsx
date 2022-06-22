@@ -12,9 +12,10 @@ const styles = createStyles({
     margin: "0",
     display: "grid",
     gridTemplateRows: "auto 1fr auto",
+    width: "100%",
   },
   Page_Container: {
-    padding: "12px",
+    //padding: "12px",
   },
 });
 const themeLight: Theme = {

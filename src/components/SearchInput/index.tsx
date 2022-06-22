@@ -5,11 +5,13 @@ import {
   connectionState,
   addHistory,
 } from "../../Redux/Actions/index";
+import { useAppSelector } from "../../hooks";
 
 function Home() {
   const [search, setSearch] = useState("");
   const today = new Date();
   const Dispatch = useDispatch();
+  const PrevSearch = useAppSelector((state) => state.Search.Results);
   const fetchData = async (search: string) => {
     try {
       Dispatch(connectionState("LOADING"));
@@ -17,7 +19,6 @@ function Home() {
         `https://api.discogs.com//database/search?q=${search}&key=${process.env.REACT_API_KEY}&secret=${process.env.REACT_API_SECRET}`
       );
       const data = await response.json();
-      console.log("inputSearch", search, data);
       if (data.results && data.results.length > 0) {
         Dispatch(replaceSEARCH(data));
         if (search !== "") {
@@ -39,7 +40,10 @@ function Home() {
     }
   };
   useEffect(() => {
-    fetchData(search);
+    console.log(PrevSearch);
+    if (!(PrevSearch?.results?.length > 0)) {
+      fetchData(search);
+    }
   }, []);
   return (
     <div className="Homer">

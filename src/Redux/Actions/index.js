@@ -35,4 +35,12 @@ export const updateHistory = (SEARCH) => ({
 export const pruneHistory = () => ({
   type: "PRUNE_HISTORY",
 });
+export const addFavorites = (fav) => ({
+  type: "ADD_FAV",
+  payload: fav,
+});
+export const deleteFavorites = (id) => ({
+  type: "DELETE_FAV",
+  payload: id,
+});
 export default { addSEARCH, actualSEARCH, changeTheme };
