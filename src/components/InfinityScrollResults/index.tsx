@@ -3,6 +3,9 @@ import { useAppSelector } from "../../hooks";
 import { useDispatch } from "react-redux";
 import { actualSEARCH, connectionState } from "../../Redux/Actions/index";
 import InfiniteScroll from "react-infinite-scroll-component";
+import CardResult from "../CardsResults";
+import { createStyles } from "../../types/emotion-styles";
+import { useTheme } from "@emotion/react";
 
 function Pagination() {
   const Search = useAppSelector((state) => state.Search);
@@ -22,41 +25,46 @@ function Pagination() {
       Dispatch(connectionState("ERROR"));
     }
   };
+  const theme = useTheme();
+  const styles = createStyles({
+    container: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "0",
+      backgroundColor: "#f7f8fc",
+    },
+    elements_container: {
+      display: "flex",
+      width: "100%",
+      justifyContent: "space-evenly",
+      flexWrap: "wrap",
+    },
+  });
 
   return (
     <>
-      {Search.InfinityScrollResults &&
-        Search.InfinityScrollResults.results.length > 0 && (
-          <InfiniteScroll
-            dataLength={Search.InfinityScrollResults.results.length}
-            next={fetchData}
-            hasMore={Search.Results.pagination.urls.next}
-            loader={<h4>Loading...</h4>}
-            endMessage={
-              <p style={{ textAlign: "center" }}>
-                <b>Yay! You have seen it all</b>
-              </p>
-            }
-          >
-            {Search.InfinityScrollResults.results.map(
-              (record: {
-                id: React.Key;
-                title:
-                  | string
-                  | number
-                  | boolean
-                  | React.ReactElement<
-                      any,
-                      string | React.JSXElementConstructor<any>
-                    >
-                  | React.ReactFragment
-                  | React.ReactPortal;
-              }) => {
-                return <h1 key={record.id}>{record.title}</h1>;
+      <div css={styles.container}>
+        {Search.InfinityScrollResults &&
+          Search.InfinityScrollResults.results.length > 0 && (
+            <InfiniteScroll
+              css={styles.elements_container}
+              dataLength={Search.InfinityScrollResults.results.length}
+              next={fetchData}
+              hasMore={Search.Results.pagination.urls.next}
+              loader={<h4>Loading...</h4>}
+              endMessage={
+                <p style={{ textAlign: "center" }}>
+                  <b>Yay! You have seen it all</b>
+                </p>
               }
-            )}
-          </InfiniteScroll>
-        )}
+            >
+              {Search.InfinityScrollResults.results.map((element: any) => {
+                return <CardResult {...element} key={element.id} />;
+              })}
+            </InfiniteScroll>
+          )}
+      </div>
     </>
   );
 }

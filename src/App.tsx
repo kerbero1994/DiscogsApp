@@ -6,6 +6,7 @@ import Details from "./Views/Details";
 import Principal from "./Views/Principal";
 import History from "./Views/History";
 import Favorites from "./Views/Favorites";
+import Error404 from "./Views/Error_404";
 import "./App.css";
 
 function App() {
@@ -18,14 +19,7 @@ function App() {
             <Route path="/Details" element={<Details />} />
             <Route path="/History" element={<History />} />
             <Route path="/Favorites" element={<Favorites />} />
-            <Route
-              path="*"
-              element={
-                <main style={{ padding: "1rem" }}>
-                  <p>There's nothing here!</p>
-                </main>
-              }
-            />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </BrowserRouter>
       </PersistGate>
