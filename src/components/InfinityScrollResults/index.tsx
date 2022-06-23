@@ -6,18 +6,17 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CardResult from "../CardsResults";
 import { createStyles } from "../../types/emotion-styles";
 import { useTheme } from "@emotion/react";
+import Animation from "../LoadingScreen/LoadingCard";
 
 function Pagination() {
   const Search = useAppSelector((state) => state.Search);
   const Dispatch = useDispatch();
   const fetchData = async () => {
     try {
-      Dispatch(connectionState("LOADING"));
       const response = await fetch(`${Search.Results.pagination.urls.next}`);
       const data = await response.json();
       if (data.results && data.results.length > 0) {
         Dispatch(actualSEARCH(data));
-        Dispatch(connectionState("SUCCESS"));
       } else {
         Dispatch(connectionState("VOID"));
       }
@@ -52,7 +51,7 @@ function Pagination() {
               dataLength={Search.InfinityScrollResults.results.length}
               next={fetchData}
               hasMore={Search.Results.pagination.urls.next}
-              loader={<h4>Loading...</h4>}
+              loader={<Animation />}
               endMessage={
                 <p style={{ textAlign: "center" }}>
                   <b>Yay! You have seen it all</b>

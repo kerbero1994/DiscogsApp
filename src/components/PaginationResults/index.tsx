@@ -1,5 +1,6 @@
 import Pagination from "./Pagination";
 import { useAppSelector } from "../../hooks";
+import Loading from "../LoadingScreen";
 
 function DisplayResults() {
   const ViewOnPagination = useAppSelector((state) => state.Settings.pagination);
@@ -7,7 +8,7 @@ function DisplayResults() {
 
   switch (Search.ConnectionState) {
     case "LOADING":
-      return <p>Cargando</p>;
+      return <Loading />;
     case "SUCCESS":
       return (
         <>

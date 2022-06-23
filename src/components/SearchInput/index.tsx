@@ -6,6 +6,9 @@ import {
   addHistory,
 } from "../../Redux/Actions/index";
 import { useAppSelector } from "../../hooks";
+import HistoryList from "../HistoryList";
+import { createStyles } from "../../types/emotion-styles";
+import { AiFillCustomerService } from "react-icons/ai";
 
 function Home() {
   const [search, setSearch] = useState("");
@@ -40,27 +43,76 @@ function Home() {
     }
   };
   useEffect(() => {
-    console.log(PrevSearch);
     if (!(PrevSearch?.results?.length > 0)) {
       fetchData(search);
     }
   }, []);
+  const styles = createStyles({
+    container: {
+      display: "flex",
+      justifyContent: "flex-end",
+      alignItems: "flex-end",
+      margin: "0",
+      padding: "12px",
+      height: "100px",
+    },
+    input_area: {
+      display: "flex",
+      justifyContent: "flex-end",
+      alignItems: "flex-end",
+    },
+    history_area: {
+      display: "flex",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+      maxHeight: "100%",
+      overflow: "auto",
+      padding: "8px",
+    },
+    search: {
+      display: "flex",
+      flexDirection: "column",
+      height: "100%",
+    },
+    search_button: {
+      backgroundColor: "DodgerBlue",
+      border: "none",
+      color: "white",
+      padding: "8px 10px",
+      fontSize: "14px",
+      cursor: "pointer",
+      borderRadius: "10px",
+      marginLeft: "8px",
+    },
+  });
   return (
-    <div className="Homer">
-      <div>
-        <input
-          id="name"
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <button
-          onClick={() => {
-            fetchData(search);
-          }}
-        >
-          buscar
-        </button>
+    <div css={styles.container}>
+      <div css={styles.search}>
+        <div css={styles.input_area}>
+          <input
+            id="name"
+            type="text"
+            placeholder="Search.."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyPress={(ev) => {
+              if (ev.charCode === 13) {
+                fetchData(search);
+              }
+            }}
+          />
+          <a
+            css={styles.search_button}
+            onClick={() => {
+              fetchData(search);
+            }}
+          >
+            <AiFillCustomerService />
+          </a>
+        </div>
+        <div css={styles.history_area}>
+          <HistoryList search={search} />
+        </div>
       </div>
     </div>
   );

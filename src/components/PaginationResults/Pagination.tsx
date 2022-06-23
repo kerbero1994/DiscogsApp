@@ -5,6 +5,12 @@ import { actualSEARCH, connectionState } from "../../Redux/Actions/index";
 import { createStyles } from "../../types/emotion-styles";
 import { useTheme } from "@emotion/react";
 import CardResult from "../CardsResults";
+import {
+  AiFillStepBackward,
+  AiFillStepForward,
+  AiFillFastForward,
+  AiFillFastBackward,
+} from "react-icons/ai";
 
 function Pagination() {
   const Search = useAppSelector((state) => state.Search);
@@ -43,6 +49,31 @@ function Pagination() {
       justifyContent: "space-evenly",
       flexWrap: "wrap",
     },
+    pagination_container: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100px",
+    },
+    pagination: {
+      display: "flex",
+      alignItems: "center",
+      flexDirection: "row",
+      justifyContent: "space-evenly",
+      width: "15%",
+    },
+    button: {
+      backgroundColor: "DodgerBlue",
+      border: "none",
+      color: "white",
+      padding: "12px 16px",
+      fontSize: "16px",
+      cursor: "pointer",
+      borderRadius: "10px",
+      marginRight: "8px",
+      marginTop: "8px",
+    },
   });
   return (
     <>
@@ -55,55 +86,53 @@ function Pagination() {
             })}
         </div>
       </div>
-      <ul className="pagination">
-        {Search.Results?.pagination?.urls?.first && (
-          <li>
+      <div css={styles.pagination_container}>
+        <div css={styles.pagination}>
+          {Search.Results?.pagination?.urls?.first && (
             <a
+              css={styles.button}
               onClick={() => {
                 fetchData(Search.Results.pagination.urls.first);
               }}
             >
-              First
+              <AiFillFastBackward />
             </a>
-          </li>
-        )}
-        {Search.Results?.pagination?.urls?.prev && (
-          <li>
+          )}
+          {Search.Results?.pagination?.urls?.prev && (
             <a
+              css={styles.button}
               onClick={() => {
                 fetchData(Search.Results.pagination.urls.prev);
               }}
             >
-              Previous
+              <AiFillStepBackward />
             </a>
-          </li>
-        )}
+          )}
 
-        <li>{Search.Results?.pagination?.page}</li>
+          <a css={styles.button}>{Search.Results?.pagination?.page}</a>
 
-        {Search.Results?.pagination?.urls?.next && (
-          <li>
+          {Search.Results?.pagination?.urls?.next && (
             <a
+              css={styles.button}
               onClick={() => {
                 fetchData(Search.Results.pagination.urls.next);
               }}
             >
-              Next
+              <AiFillStepForward />
             </a>
-          </li>
-        )}
-        {Search.Results?.pagination?.urls?.last && (
-          <li>
+          )}
+          {Search.Results?.pagination?.urls?.last && (
             <a
+              css={styles.button}
               onClick={() => {
                 fetchData(Search.Results.pagination.urls.last);
               }}
             >
-              {Search.Results?.pagination?.pages}
+              <AiFillFastForward />
             </a>
-          </li>
-        )}
-      </ul>
+          )}
+        </div>
+      </div>
     </>
   );
 }

@@ -1,8 +1,9 @@
-import Layout from "../../components/Layout";
+import React from "react";
 import { createStyles } from "../../types/emotion-styles";
 import { useTheme } from "@emotion/react";
+import Animation from "./Animation";
 
-function index() {
+function LoadingScreen() {
   const styles = createStyles({
     container: {
       display: "flex",
@@ -10,8 +11,6 @@ function index() {
       alignItems: "center",
       margin: "0",
       backgroundColor: "#f7f8fc",
-      backgroundImage:
-        "url('https://www.wallpaperflare.com/static/100/599/786/vinyl-records-fragments-fall-broken-wallpaper.jpg')",
       width: "100%",
       height: "100%",
     },
@@ -20,13 +19,10 @@ function index() {
     },
   });
   return (
-    <Layout>
-      <div css={styles.container}>
-        <h1 css={styles.Title}>Lost Signal</h1>
-        <h1 css={styles.Title}>404 Not Found</h1>
-      </div>
-    </Layout>
+    <div css={styles.container}>
+      <Animation />
+    </div>
   );
 }
 
-export default index;
+export default LoadingScreen;

@@ -15,7 +15,7 @@ const styles = createStyles({
     width: "100%",
   },
   Page_Container: {
-    //padding: "12px",
+    backgroundColor: "#f7f8fc",
   },
 });
 const themeLight: Theme = {

@@ -31,7 +31,16 @@ function Pagination() {
                 return <CardResult {...element} key={element.id} />;
               })
             ) : (
-              <div>No favorites </div>
+              <div>
+                <img
+                  src="https://pbs.twimg.com/media/Da9ZNzxX0AEIq_z.jpg"
+                  alt="NO favorites"
+                />
+                <img
+                  src="https://pbs.twimg.com/media/DYoEki1UMAAMV4-.jpg"
+                  alt="NO favorites"
+                />
+              </div>
             )}
           </div>
         </div>
