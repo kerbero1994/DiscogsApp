@@ -26,17 +26,20 @@ function index() {
       flexDirection: "row",
       textDecoration: "none",
       color: theme.text,
+      padding: "12px",
     },
     menu: {
       flex: "1 1 auto",
       display: "flex",
       justifyContent: "flex-end",
       alignItems: "flex-end",
+      height: "100%",
     },
     img: {
-      width: "50px",
+      //width: "50px",
       height: "50px",
       objectFit: "cover",
+      filter: theme.LogoFilter,
     },
     title: {
       display: "flex",
@@ -45,6 +48,9 @@ function index() {
       marginLeft: "12px",
     },
     menu_item: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
       textDecoration: "none",
       height: "100%",
       cursor: "pointer",
@@ -67,10 +73,9 @@ function index() {
       <Link to={"/"} css={styles.logo}>
         <img
           css={styles.img}
-          src="../../../public/assets/images/LogoD.png"
+          src="https://s.discogs.com/37032f9294ae556f334d0f470d385f36686b429c/images/discogs-logo.svg"
           alt="logo"
         />
-        <div css={styles.title}>Discogs App</div>
       </Link>
       <div css={styles.menu}>
         <Link to={"/History"} css={styles.menu_item}>

@@ -16,6 +16,7 @@ declare module "@emotion/react" {
     buttonHover: string;
     backgroundField: string;
     cardBodyBackground: string;
+    LogoFilter: string;
   }
 }
 
