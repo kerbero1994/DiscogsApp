@@ -33,7 +33,7 @@ function index({
   const styles = createStyles({
     card: {
       margin: "10px",
-      backgroundColor: "#fff",
+      backgroundColor: theme.cardBodyBackground,
       borderRadius: "10px",
       boxShadow: "0 2px 20px rgba(0, 0, 0, 0.2)",
       overflow: "hidden",
@@ -56,7 +56,9 @@ function index({
       justifyContent: "flex-start",
       marginBottom: "4px",
     },
-    title: {},
+    title: {
+      color: theme.text,
+    },
     img: {
       width: "100%",
       height: "200px",
@@ -157,7 +159,7 @@ function index({
                   {type && <span css={styles.tag}>{type}</span>}
                   {year && <span css={styles.tag}>{year}</span>}
                 </div>
-                <h4>{title}</h4>
+                <h4 css={styles.title}>{title}</h4>
               </>
             )}
             <div css={styles.options_info}>

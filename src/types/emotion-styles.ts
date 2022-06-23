@@ -13,6 +13,9 @@ declare module "@emotion/react" {
     buttonBorder: string;
     buttonBg: string;
     buttonBgHover: string;
+    buttonHover: string;
+    backgroundField: string;
+    cardBodyBackground: string;
   }
 }
 

@@ -5,20 +5,23 @@ import Layout from "../../components/Layout";
 
 function Pagination() {
   const List = useAppSelector((state) => state.Favorites.List);
+  const theme = useAppSelector((state) => state.Settings.themeDark);
   const styles = createStyles({
     container: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       margin: "0",
-      backgroundColor: "#f7f8fc",
+      backgroundColor: theme ? "#001E3C" : "#F7F8FC",
       height: "100%",
+      width: "100%",
     },
     elements_container: {
       display: "flex",
       width: "100%",
       justifyContent: "space-evenly",
       flexWrap: "wrap",
+      backgroundColor: theme ? "#001E3C" : "#F7F8FC",
     },
   });
   return (

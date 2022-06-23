@@ -4,13 +4,14 @@ import { useTheme } from "@emotion/react";
 import Animation from "./Animation";
 
 function LoadingScreen() {
+  const theme = useTheme();
   const styles = createStyles({
     container: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       margin: "0",
-      backgroundColor: "#f7f8fc",
+      backgroundColor: theme.backgroundField,
       width: "100%",
       height: "100%",
     },

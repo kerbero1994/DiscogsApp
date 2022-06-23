@@ -13,12 +13,13 @@ function HistoryList({ search }: { search: string }) {
   const Dispatch = useDispatch();
   const styles = createStyles({
     container: {
-      width: "100%",
+      width: "90%",
       display: "flex",
       backgroundColor: "#fff",
       borderRadius: "10px",
       padding: "4px",
       cursor: "pointer",
+      margin: "4px",
     },
   });
   if (HistorySearch.length > 0 && search !== "") {

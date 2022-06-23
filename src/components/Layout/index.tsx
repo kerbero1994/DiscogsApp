@@ -20,16 +20,23 @@ const styles = createStyles({
 });
 const themeLight: Theme = {
   text: "#000",
-  background: "#fff",
+  background: "linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)",
+  backgroundField: "#F7F8FC",
+  cardBodyBackground: "#FFFFFF",
   buttonText: "#000",
+  buttonHover: "#E9E9ED",
   buttonTextHover: "#fff",
   buttonBorder: "#000",
   buttonBg: "rgba(0, 0, 0, 0)",
   buttonBgHover: "rgba (0, 0, , 1)",
 };
+
 const themeDark: Theme = {
   text: "#fff",
-  background: "#303030",
+  background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+  backgroundField: "#001E3C",
+  cardBodyBackground: "#006FDF",
+  buttonHover: "#3b3b3b",
   buttonText: "#fff",
   buttonTextHover: "#000",
   buttonBorder: "#fff",

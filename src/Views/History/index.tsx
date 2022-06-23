@@ -10,26 +10,31 @@ import { AiFillDelete } from "react-icons/ai";
 function index() {
   const Dispatch = useDispatch();
   const History = useAppSelector((state) => state.History);
-  const theme = useTheme();
+  const theme = useAppSelector((state) => state.Settings.themeDark);
+
   const styles = createStyles({
     container: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       margin: "0",
-      backgroundColor: "#f7f8fc",
+      backgroundColor: theme ? "#001E3C" : "#F7F8FC",
+      height: "96%",
+      width: "100%",
     },
     elements_container: {
       display: "flex",
       width: "100%",
       justifyContent: "space-evenly",
       flexWrap: "wrap",
+      backgroundColor: theme ? "#001E3C" : "#F7F8FC",
     },
     button_container: {
       display: "flex",
       width: "100%",
       justifyContent: "flex-end",
       alignItems: "flex-end",
+      backgroundColor: theme ? "#001E3C" : "#F7F8FC",
     },
     button: {
       backgroundColor: "#C62828",
@@ -46,6 +51,17 @@ function index() {
   return (
     <Layout>
       <>
+        <div css={styles.button_container}>
+          <a
+            css={styles.button}
+            onClick={() => {
+              Dispatch(pruneHistory());
+            }}
+          >
+            {" "}
+            <AiFillDelete />
+          </a>
+        </div>
         <div css={styles.container}>
           <div css={styles.elements_container}>
             {History.Searches &&
@@ -60,17 +76,6 @@ function index() {
                 );
               })}
           </div>
-        </div>
-        <div css={styles.button_container}>
-          <a
-            css={styles.button}
-            onClick={() => {
-              Dispatch(pruneHistory());
-            }}
-          >
-            {" "}
-            <AiFillDelete />
-          </a>
         </div>
       </>
     </Layout>

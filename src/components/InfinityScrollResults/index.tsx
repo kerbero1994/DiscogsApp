@@ -31,13 +31,14 @@ function Pagination() {
       justifyContent: "center",
       alignItems: "center",
       margin: "0",
-      backgroundColor: "#f7f8fc",
+      backgroundColor: theme.backgroundField,
     },
     elements_container: {
       display: "flex",
       width: "100%",
       justifyContent: "space-evenly",
       flexWrap: "wrap",
+      backgroundColor: theme.backgroundField,
     },
   });
 

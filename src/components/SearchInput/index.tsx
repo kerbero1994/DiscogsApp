@@ -4,17 +4,20 @@ import {
   replaceSEARCH,
   connectionState,
   addHistory,
+  changeResultsVisualizations,
 } from "../../Redux/Actions/index";
 import { useAppSelector } from "../../hooks";
 import HistoryList from "../HistoryList";
 import { createStyles } from "../../types/emotion-styles";
 import { AiFillCustomerService } from "react-icons/ai";
+import { useTheme } from "@emotion/react";
 
 function Home() {
   const [search, setSearch] = useState("");
   const today = new Date();
   const Dispatch = useDispatch();
   const PrevSearch = useAppSelector((state) => state.Search.Results);
+  const Paginated = useAppSelector((state) => state.Settings.pagination);
   const fetchData = async (search: string) => {
     try {
       Dispatch(connectionState("LOADING"));
@@ -47,6 +50,7 @@ function Home() {
       fetchData(search);
     }
   }, []);
+  const theme = useTheme();
   const styles = createStyles({
     container: {
       display: "flex",
@@ -54,7 +58,8 @@ function Home() {
       alignItems: "flex-end",
       margin: "0",
       padding: "12px",
-      height: "100px",
+      height: "150px",
+      backgroundColor: theme.backgroundField,
     },
     input_area: {
       display: "flex",
@@ -65,9 +70,12 @@ function Home() {
       display: "flex",
       justifyContent: "flex-start",
       alignItems: "flex-start",
-      maxHeight: "100%",
-      overflow: "auto",
-      padding: "8px",
+      padding: "4px",
+      flexDirection: "column",
+      zIndex: "9999",
+      marginTop: "12px",
+      borderRadius: "15px",
+      backgroundColor: theme.backgroundField,
     },
     search: {
       display: "flex",
@@ -118,6 +126,14 @@ function Home() {
             }}
           >
             <AiFillCustomerService />
+          </a>
+          <a
+            css={styles.search_button}
+            onClick={() => {
+              Dispatch(changeResultsVisualizations());
+            }}
+          >
+            {Paginated ? "Pagination" : "Scroll"}
           </a>
         </div>
         <div css={styles.history_area}>

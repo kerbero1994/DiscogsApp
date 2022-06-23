@@ -3,18 +3,16 @@
 import { createStyles } from "../../types/emotion-styles";
 import { useTheme } from "@emotion/react";
 import { useDispatch } from "react-redux";
-import {
-  changeTheme,
-  changeResultsVisualizations,
-} from "../../Redux/Actions/index";
+import { changeTheme } from "../../Redux/Actions/index";
 import { Link } from "react-router-dom";
-//import Logo from "../../../public/assets/images/logo.png";
+import { WiDaySunny, WiMoonAltWaxingCrescent2 } from "react-icons/wi";
+import { useAppSelector } from "../../hooks";
 
 function index() {
   const theme = useTheme();
   const styles = createStyles({
     container: {
-      backgroundColor: theme.background,
+      backgroundImage: theme.background,
       color: theme.text,
       width: "100%",
       display: "flex",
@@ -53,11 +51,17 @@ function index() {
       color: theme.text,
       padding: "12px",
       "&:hover": {
-        backgroundColor: "#3b3b3b",
+        backgroundColor: theme.buttonHover,
       },
+    },
+    Theme_button: {
+      display: "flex",
+      justifyContent: "space-evenly",
+      alignItems: "center",
     },
   });
   const Dispatch = useDispatch();
+  const DarkTheme = useAppSelector((state) => state.Settings.themeDark);
   return (
     <div css={styles.container}>
       <Link to={"/"} css={styles.logo}>
@@ -69,14 +73,6 @@ function index() {
         <div css={styles.title}>Discogs App</div>
       </Link>
       <div css={styles.menu}>
-        <a
-          css={styles.menu_item}
-          onClick={() => {
-            Dispatch(changeResultsVisualizations());
-          }}
-        >
-          Pagination
-        </a>
         <Link to={"/History"} css={styles.menu_item}>
           History
         </Link>
@@ -89,7 +85,15 @@ function index() {
             Dispatch(changeTheme());
           }}
         >
-          DarkMode
+          {DarkTheme ? (
+            <div css={styles.Theme_button}>
+              <WiMoonAltWaxingCrescent2 style={{ marginRight: "4px" }} /> Dark
+            </div>
+          ) : (
+            <div css={styles.Theme_button}>
+              <WiDaySunny style={{ marginRight: "4px" }} color="yellow" /> Light
+            </div>
+          )}
         </a>
       </div>
     </div>

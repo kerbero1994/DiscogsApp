@@ -41,13 +41,14 @@ function Pagination() {
       justifyContent: "center",
       alignItems: "center",
       margin: "0",
-      backgroundColor: "#f7f8fc",
+      backgroundColor: theme.backgroundField,
     },
     elements_container: {
       display: "flex",
       width: "100%",
       justifyContent: "space-evenly",
       flexWrap: "wrap",
+      backgroundColor: theme.backgroundField,
     },
     pagination_container: {
       width: "100%",
@@ -55,6 +56,7 @@ function Pagination() {
       justifyContent: "center",
       alignItems: "center",
       height: "100px",
+      backgroundColor: theme.backgroundField,
     },
     pagination: {
       display: "flex",
