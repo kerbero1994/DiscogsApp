@@ -84,6 +84,15 @@ function Home() {
       borderRadius: "10px",
       marginLeft: "8px",
     },
+    input: {
+      padding: "8px 10px",
+      border: "0",
+      borderRadius: "35px",
+      "&:focus": {
+        backgroundColor: "#ececec",
+        border: "none",
+      },
+    },
   });
   return (
     <div css={styles.container}>
@@ -91,6 +100,7 @@ function Home() {
         <div css={styles.input_area}>
           <input
             id="name"
+            css={styles.input}
             type="text"
             placeholder="Search.."
             value={search}

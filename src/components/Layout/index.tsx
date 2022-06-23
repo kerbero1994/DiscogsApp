@@ -29,7 +29,7 @@ const themeLight: Theme = {
 };
 const themeDark: Theme = {
   text: "#fff",
-  background: "#121212",
+  background: "#303030",
   buttonText: "#fff",
   buttonTextHover: "#000",
   buttonBorder: "#fff",
